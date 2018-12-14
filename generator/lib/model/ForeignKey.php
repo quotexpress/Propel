@@ -543,7 +543,10 @@ class ForeignKey extends XMLElement
         $columns = array();
         $foreignTable = $this->getForeignTable();
         foreach ($this->foreignColumns as $columnName) {
-            $columns[] = $foreignTable->getColumn($columnName);
+            $col = $foreignTable->getColumn($columnName);
+            if (!empty($col)) {
+                $columns[] = $col;
+            }
         }
 
         return $columns;
